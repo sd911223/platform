@@ -1,0 +1,75 @@
+2020-03-09 00:01:53.686  INFO 3432 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-09 00:01:53.979  INFO 3432 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-03-09 00:01:53.993  INFO 3432 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-03-09 00:02:03.235  INFO 15996 --- [main] com.sysm.back.PlatformApplication        : Starting PlatformApplication on DESKTOP-AFMJG69 with PID 15996 (D:\myworks\sysm_back\target\classes started by shidun in D:\myworks\sysm_back)
+2020-03-09 00:02:03.238  INFO 15996 --- [main] com.sysm.back.PlatformApplication        : The following profiles are active: dev
+2020-03-09 00:02:04.054  INFO 15996 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-03-09 00:02:04.056  INFO 15996 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-03-09 00:02:04.085  INFO 15996 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15ms. Found 0 Redis repository interfaces.
+2020-03-09 00:02:04.620  INFO 15996 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-09 00:02:04.630  INFO 15996 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-09 00:02:04.631  INFO 15996 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-09 00:02:04.711  INFO 15996 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-09 00:02:04.711  INFO 15996 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1412 ms
+2020-03-09 00:02:05.632  INFO 15996 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-09 00:02:05.737  INFO 15996 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-09 00:02:05.790  INFO 15996 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-03-09 00:02:05.961  INFO 15996 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-09 00:02:05.977  INFO 15996 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-09 00:02:06.010  INFO 15996 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-09 00:02:06.155  INFO 15996 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-09 00:02:06.158  INFO 15996 --- [main] com.sysm.back.PlatformApplication        : Started PlatformApplication in 3.551 seconds (JVM running for 4.855)
+2020-03-09 00:03:14.426  INFO 15996 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-09 00:03:14.426  INFO 15996 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-09 00:03:14.433  INFO 15996 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-03-09 00:03:14.543  INFO 15996 --- [http-nio-8080-exec-1] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2020-03-09 00:03:14.544  INFO 15996 --- [http-nio-8080-exec-1] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2020-03-09 00:03:30.527  INFO 15996 --- [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-03-09 00:03:31.245  INFO 15996 --- [http-nio-8080-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-03-09 00:04:26.837  INFO 15996 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-09 00:04:27.067  INFO 15996 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-03-09 00:04:27.075  INFO 15996 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-03-09 00:04:32.658  INFO 12040 --- [main] com.sysm.back.PlatformApplication        : Starting PlatformApplication on DESKTOP-AFMJG69 with PID 12040 (D:\myworks\sysm_back\target\classes started by shidun in D:\myworks\sysm_back)
+2020-03-09 00:04:32.663  INFO 12040 --- [main] com.sysm.back.PlatformApplication        : The following profiles are active: dev
+2020-03-09 00:04:33.529  INFO 12040 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-03-09 00:04:33.531  INFO 12040 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-03-09 00:04:33.559  INFO 12040 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15ms. Found 0 Redis repository interfaces.
+2020-03-09 00:04:34.121  INFO 12040 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-09 00:04:34.131  INFO 12040 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-09 00:04:34.131  INFO 12040 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-09 00:04:34.215  INFO 12040 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-09 00:04:34.215  INFO 12040 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1465 ms
+2020-03-09 00:04:35.121  INFO 12040 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-09 00:04:35.224  INFO 12040 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-09 00:04:35.278  INFO 12040 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-03-09 00:04:35.454  INFO 12040 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-09 00:04:35.470  INFO 12040 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-09 00:04:35.499  INFO 12040 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-09 00:04:35.668  INFO 12040 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-09 00:04:35.671  INFO 12040 --- [main] com.sysm.back.PlatformApplication        : Started PlatformApplication in 3.63 seconds (JVM running for 4.951)
+2020-03-09 00:12:16.023  INFO 12040 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-09 00:12:55.476  INFO 1684 --- [main] com.sysm.back.PlatformApplication        : Starting PlatformApplication on DESKTOP-AFMJG69 with PID 1684 (D:\myworks\sysm_back\target\classes started by shidun in D:\myworks\sysm_back)
+2020-03-09 00:12:55.479  INFO 1684 --- [main] com.sysm.back.PlatformApplication        : The following profiles are active: dev
+2020-03-09 00:12:56.520  INFO 1684 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-03-09 00:12:56.523  INFO 1684 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-03-09 00:12:56.560  INFO 1684 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20ms. Found 0 Redis repository interfaces.
+2020-03-09 00:12:57.256  INFO 1684 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-09 00:12:57.267  INFO 1684 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-09 00:12:57.267  INFO 1684 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-09 00:12:57.369  INFO 1684 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-03-09 00:12:57.369  INFO 1684 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1820 ms
+2020-03-09 00:12:58.595  INFO 1684 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-09 00:12:58.706  INFO 1684 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-09 00:12:58.760  INFO 1684 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-03-09 00:12:58.951  INFO 1684 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-09 00:12:58.966  INFO 1684 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-09 00:12:59.002  INFO 1684 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-09 00:12:59.213  INFO 1684 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-09 00:12:59.217  INFO 1684 --- [main] com.sysm.back.PlatformApplication        : Started PlatformApplication in 4.397 seconds (JVM running for 7.261)
+2020-03-09 00:13:05.495  INFO 1684 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-09 00:13:05.495  INFO 1684 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-09 00:13:05.504  INFO 1684 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2020-03-09 00:13:05.636  INFO 1684 --- [http-nio-8080-exec-1] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2020-03-09 00:13:05.639  INFO 1684 --- [http-nio-8080-exec-1] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2020-03-09 00:13:14.725  INFO 1684 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-03-09 00:13:15.658  INFO 1684 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.

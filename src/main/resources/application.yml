@@ -1,0 +1,47 @@
+#需要加载的配置文件
+spring:
+  profiles:
+    active: dev
+logging:
+  file: back.log
+  level:
+    com.sysm.back.dao: debug
+  # root: info
+
+mybatis:
+  #mybatis数据库字段开启驼峰转换
+  configuration:
+    map-underscore-to-camel-case: true
+    #打印sql
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #对应mapper映射xml文件的所在路径
+  mapper-locations: classpath:mapping/**/*.xml
+pagehelper:
+  # dialect: ①
+  # 分页插件会自动检测当前的数据库链接，自动选择合适的分页方式（可以不设置）
+  helper-dialect: mysql
+  # 上面数据库设置后，下面的设置为true不会改变上面的结果（默认为true）
+  auto-dialect: true
+  page-size-zero: false # ②
+  reasonable: true # ③
+  # 默认值为 false，该参数对使用 RowBounds 作为分页参数时有效。（一般用不着）
+  offset-as-page-num: false
+  # 默认值为 false，RowBounds是否进行count查询（一般用不着）
+  row-bounds-with-count: false
+  #params: ④
+  #support-methods-arguments: 和params配合使用，具体可以看下面的讲解
+  # 默认值为 false。设置为 true 时，允许在运行时根据多数据源自动识别对应方言的分页
+  auto-runtime-dialect: false # ⑤
+  # 与auto-runtime-dialect配合使用
+  close-conn: true
+  # 用于控制默认不带 count 查询的方法中，是否执行 count 查询，这里设置为true后，total会为-1
+  default-count: false
+  #dialect-alias: ⑥
+token:
+  expirationSeconds: 300
+  validTime: 7
+ras:
+  #私钥
+  privateKey: MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALcgmP9EeE7A6qBuskv8pV0EDEFC5+3LftIyKSz/HYdS213awHXFRvBKMw4wvrnmZ6V4B3RbGgW/nmx5NpsfeGx8uzndgE6VB7kXpRSX2X3moELZud0W3tr4EfGGy2TBoafQYs2I3LkUE6LcBX9cGF2LROCJ6iZMxrzI2xsdKhmnAgMBAAECgYAM/7dch1Oy42bENJdbZXenfp4QE9u6uXMrIHxjwUgrTupbYye+NF6wt9Of8j3XnE9HI5oD3GOgfNWWBZSmtjkp+y3kaWTTzbuqXU52/pWzs0oVfXTTMIMk2kjuncLHCL/QnN5PFIC36SK1hjZrRaj/GaZahEniDVj5N03cvMBDoQJBAPrmKgcN8MbvBUMKUcOrpsxpd3ZwbN5pUhuGzfao5B7xaeVC5CBIx9rk4C3pWnllw7ZfhBTz7PplpW6tEJWf4z0CQQC62bT3neJlkYsOAqQsoQ69AUMom4H6CWFhnj1jmADFh+KH6OJuF40vyx6jxHRYOic5MNpwwe0z1g3fLutZQm6zAkBgXBl0ECSTIqVws/vnHHu5MiBReqg1W1nPfJyJyR+jyrAS/vfCdnFbXl/DAkZfLXhXCKQfr/cpy/QXZ5xg+sE5AkEAlKnIqUbOLX+qQoBpfTS7lDef5nwr4vN5roCHWWlEG+Wsn/PzzCIi7EbQ3v3cj6HdOUycUCCLiLWjndIn4IHRrwJAWYYkkWitb6ep7dKFbWzxNe/jwODosylY6P6Hk+8fowAuquItySQSRnX0xxrI33Z3AmWm97QNc1b+CyrFKp71qw==
+  #公钥
+  publicKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3IJj/RHhOwOqgbrJL/KVdBAxBQufty37SMiks/x2HUttd2sB1xUbwSjMOML655meleAd0WxoFv55seTabH3hsfLs53YBOlQe5F6UUl9l95qBC2bndFt7a+BHxhstkwaGn0GLNiNy5FBOi3AV/XBhdi0TgieomTMa8yNsbHSoZpwIDAQAB
