@@ -47,8 +47,25 @@ public interface SysUserService {
 
     /**
      * 查询列表
+     *
      * @param token
      * @return
      */
-    Map<String, Object> listUser(String token,String userName, String userStatus,Integer pageNum,Integer pageSize);
+    Map<String, Object> listUser(String token, String userName, String userStatus, Integer pageNum, Integer pageSize);
+
+    /**
+     * 第三方注册
+     *
+     * @param sign
+     * @return
+     */
+    Map<String, Object> registrationUser(String sign);
+
+    /**
+     * 第三方修改密码
+     *
+     * @param sign
+     * @return
+     */
+    Map<String, Object> otherModifyPassword(String sign);
 }

@@ -1,5 +1,6 @@
 package com.sysm.back.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sysm.back.Enums.ResultEnum;
@@ -9,6 +10,7 @@ import com.sysm.back.VO.ResultVO;
 import com.sysm.back.dao.SysUserMapper;
 import com.sysm.back.dao.SysUserRoleMapper;
 import com.sysm.back.dao.UserMapper;
+import com.sysm.back.entity.User;
 import com.sysm.back.entity.UserRole;
 import com.sysm.back.model.SysUser;
 import com.sysm.back.model.SysUserExample;
@@ -16,8 +18,10 @@ import com.sysm.back.model.SysUserRole;
 import com.sysm.back.service.SysUserService;
 import com.sysm.back.utils.JwtUtil;
 import com.sysm.back.utils.MD5Util;
+import com.sysm.back.utils.RSAUtils;
 import com.sysm.back.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -35,6 +39,9 @@ public class SysUserServiceImpl implements SysUserService {
     UserMapper userMapper;
     @Autowired
     SysUserRoleMapper sysUserRoleMapper;
+
+    @Value("${ras.privateKey}")
+    private String privateKey;
 
     @Override
     public Map<String, Object> userLogin(String userName, String password) {
@@ -130,5 +137,74 @@ public class SysUserServiceImpl implements SysUserService {
         List<SysUser> sysUsers = sysUserMapper.selectByExample(example);
         PageInfo<SysUser> pageInfo = new PageInfo<>(sysUsers);
         return ResultVO.success(pageInfo, token);
+    }
+
+    @Override
+    public Map<String, Object> registrationUser(String sign) {
+        String s = RSAUtils.decryptDataOnJava(sign, privateKey);
+        User user = JSON.parseObject(s, User.class);
+        if (null == user) {
+            return ResultVO.failure(401, "参数对象不能为空");
+        }
+        if ("".equals(user.getPhoneNum())) {
+            return ResultVO.failure(401, "手机号不能为空");
+        }
+        if ("".equals(user.getPassword())) {
+            return ResultVO.failure(401, "密码不能为空");
+        }
+        if ("".equals(user.getPlatformSign())) {
+            return ResultVO.failure(401, "平台标识不能为空");
+        }
+        if ("".equals(user.getIp())) {
+            return ResultVO.failure(401, "IP不能为空");
+        }
+        SysUserExample example = new SysUserExample();
+        SysUserExample.Criteria criteria = example.createCriteria();
+        criteria.andUserNameEqualTo(user.getPhoneNum());
+        List<SysUser> list = sysUserMapper.selectByExample(example);
+        if (list.isEmpty()) {
+            SysUser sysUser = new SysUser();
+            sysUser.setIsEffective("0");
+            sysUser.setUserName(user.getPhoneNum());
+            sysUser.setPassword(MD5Util.Md5(user.getPhoneNum(), user.getPassword()));
+            sysUser.setPhoneNum(user.getPhoneNum());
+            sysUser.setCreateTime(new Date());
+            sysUser.setPlatformMark(user.getPlatformSign());
+            sysUser.setIp(user.getIp());
+            int i = sysUserMapper.insertSelective(sysUser);
+            if (i > 0) {
+                return ResultVO.success();
+            }
+        }
+        return ResultVO.failure(402, "注册失败");
+    }
+
+    @Override
+    public Map<String, Object> otherModifyPassword(String sign) {
+        String s = RSAUtils.decryptDataOnJava(sign, privateKey);
+        User user = JSON.parseObject(s, User.class);
+        if (null == user) {
+            return ResultVO.failure(401, "参数对象不能为空");
+        }
+        if ("".equals(user.getPhoneNum())) {
+            return ResultVO.failure(401, "手机号不能为空");
+        }
+        if ("".equals(user.getPassword())) {
+            return ResultVO.failure(401, "密码不能为空");
+        }
+        SysUserExample example = new SysUserExample();
+        SysUserExample.Criteria criteria = example.createCriteria();
+        criteria.andUserNameEqualTo(user.getPhoneNum());
+        List<SysUser> users = sysUserMapper.selectByExample(example);
+        if (users.isEmpty()) {
+            return ResultVO.failure(ResultEnum.USER_LOGIN_FAILED, "没有该账户", false);
+        }
+        SysUser sysUser = users.get(0);
+        sysUser.setPassword(MD5Util.Md5(sysUser.getUserName(), user.getPassword()));
+        int i = sysUserMapper.updateByPrimaryKey(sysUser);
+        if (i > 0) {
+            return ResultVO.success();
+        }
+        return ResultVO.failure(ResultEnum.USER_LOGIN_FAILED, "没有该账户", false);
     }
 }

@@ -28,6 +28,7 @@ public class AppInterceptor implements HandlerInterceptor {
      * redis服务
      **/
     private static RedisUtil redisUtil;
+
     /**
      * redis服务
      */
