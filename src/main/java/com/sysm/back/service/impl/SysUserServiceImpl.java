@@ -16,20 +16,20 @@ import com.sysm.back.model.SysUser;
 import com.sysm.back.model.SysUserExample;
 import com.sysm.back.model.SysUserRole;
 import com.sysm.back.service.SysUserService;
-import com.sysm.back.utils.JwtUtil;
-import com.sysm.back.utils.MD5Util;
-import com.sysm.back.utils.RSAUtils;
-import com.sysm.back.utils.RedisUtil;
+import com.sysm.back.utils.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 @Service
+@Slf4j
 public class SysUserServiceImpl implements SysUserService {
     @Autowired
     SysUserMapper sysUserMapper;
@@ -39,6 +39,8 @@ public class SysUserServiceImpl implements SysUserService {
     UserMapper userMapper;
     @Autowired
     SysUserRoleMapper sysUserRoleMapper;
+    @Autowired
+    HttpServletRequest request;
 
     @Value("${ras.privateKey}")
     private String privateKey;
@@ -46,7 +48,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public Map<String, Object> userLogin(String userName, String password) {
         SysUserExample sysUserExample = new SysUserExample();
-        password = MD5Util.toMd5(password);
+        password = MD5Util.Md5(userName, password);
         sysUserExample.createCriteria().andUserNameEqualTo(userName).andPasswordEqualTo(password).andIsEffectiveEqualTo("0");
         List<SysUser> listUsers = sysUserMapper.selectByExample(sysUserExample);
         if (listUsers.isEmpty()) {
@@ -62,15 +64,24 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public Map<String, Object> userregister(String userName, String password, String token, UserRoleEnum userRoleEnum) {
+    public Map<String, Object> userregister(String userName, String password, String mailbox, String phoneNum, String remark, String maturityTime, String token, UserRoleEnum userRoleEnum) {
         SysUserExample sysUserExample = new SysUserExample();
         sysUserExample.createCriteria().andUserNameEqualTo(userName);
         List<SysUser> userList = sysUserMapper.selectByExample(sysUserExample);
+        SysUser user = JwtUtil.getSysUser(token);
         if (userList.isEmpty()) {
             SysUser sysUser = new SysUser();
             sysUser.setUserName(userName);
-            sysUser.setPassword(MD5Util.toMd5(password));
+            sysUser.setMailbox(mailbox);
+            sysUser.setPhoneNum(phoneNum);
+            sysUser.setRemark(remark);
+            sysUser.setMaturityTime(DateUtil.fomatDate(maturityTime));
+            sysUser.setPassword(MD5Util.Md5(userName, password));
             sysUser.setCreateTime(new Date());
+            sysUser.setIp(AccessAddressUtil.getIpAddress(request));
+            sysUser.setBelongAgent(user.getUserName());
+            sysUser.setBelongSoftware("1");
+            sysUser.setPlatformMark("1");
             //0为有效
             sysUser.setIsEffective("0");
             int selective = sysUserMapper.insertSelective(sysUser);
@@ -123,7 +134,7 @@ public class SysUserServiceImpl implements SysUserService {
     public Map<String, Object> listUser(String token, String userName, String userStatus, Integer pageNum, Integer pageSize) {
 
         SysUserExample example = new SysUserExample();
-        PageHelper.startPage(pageNum, 10);
+        PageHelper.startPage(pageNum, pageSize);
         SysUserExample.Criteria criteria = example.createCriteria();
         if (!StringUtils.isEmpty(userName)) {
             criteria.andUserNameLike(userName);
@@ -144,18 +155,23 @@ public class SysUserServiceImpl implements SysUserService {
         String s = RSAUtils.decryptDataOnJava(sign, privateKey);
         User user = JSON.parseObject(s, User.class);
         if (null == user) {
+            log.info("对象为空");
             return ResultVO.failure(401, "参数对象不能为空");
         }
         if ("".equals(user.getPhoneNum())) {
+            log.info("手机号为空");
             return ResultVO.failure(401, "手机号不能为空");
         }
         if ("".equals(user.getPassword())) {
+            log.info("密码为空");
             return ResultVO.failure(401, "密码不能为空");
         }
         if ("".equals(user.getPlatformSign())) {
+            log.info("平台标识为空");
             return ResultVO.failure(401, "平台标识不能为空");
         }
         if ("".equals(user.getIp())) {
+            log.info("IP为空");
             return ResultVO.failure(401, "IP不能为空");
         }
         SysUserExample example = new SysUserExample();
@@ -201,6 +217,20 @@ public class SysUserServiceImpl implements SysUserService {
         }
         SysUser sysUser = users.get(0);
         sysUser.setPassword(MD5Util.Md5(sysUser.getUserName(), user.getPassword()));
+        int i = sysUserMapper.updateByPrimaryKey(sysUser);
+        if (i > 0) {
+            return ResultVO.success();
+        }
+        return ResultVO.failure(ResultEnum.USER_LOGIN_FAILED, "没有该账户", false);
+    }
+
+    @Override
+    public Map<String, Object> resetPassword(String token, Integer userId, String passWord, String passWordTwo) {
+        if (!passWord.equals(passWordTwo)) {
+            return ResultVO.failure(ResultEnum.USER_LOGIN_FAILED, "两次密码不一致", false);
+        }
+        SysUser sysUser = sysUserMapper.selectByPrimaryKey(userId);
+        sysUser.setPassword(MD5Util.Md5(sysUser.getUserName(), passWord));
         int i = sysUserMapper.updateByPrimaryKey(sysUser);
         if (i > 0) {
             return ResultVO.success();

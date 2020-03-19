@@ -26,9 +26,14 @@ public class UserContorller {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userName", value = "账号", required = true),
-            @ApiImplicitParam(name = "password", value = "密码", required = true)
+            @ApiImplicitParam(name = "password", value = "密码", required = true),
+            @ApiImplicitParam(name = "mailbox", value = "邮箱", required = true),
+            @ApiImplicitParam(name = "phoneNum", value = "手机号", required = true),
+            @ApiImplicitParam(name = "remark", value = "备注", required = false),
+            @ApiImplicitParam(name = "maturityTime", value = "到期时间", required = true)
     })
-    public Map<String, Object> register(String userName, String password, @RequestParam("userRole") UserRoleEnum userRoleEnum, @RequestHeader("token") String token) {
+    public Map<String, Object> register(String userName, String password, String mailbox, String phoneNum, String remark, String maturityTime,
+                                        @RequestParam("userRole") UserRoleEnum userRoleEnum, @RequestHeader("token") String token) {
         if (StringUtils.isEmpty(userName.trim())) {
             return ResultVO.failure(401, "用户账号不能为空");
         }
@@ -38,7 +43,7 @@ public class UserContorller {
         if (null == userRoleEnum) {
             return ResultVO.failure(401, "用户角色不能为空");
         }
-        return sysUserService.userregister(userName, password, token,userRoleEnum);
+        return sysUserService.userregister(userName, password, mailbox, phoneNum, remark, maturityTime, token, userRoleEnum);
     }
 
     @ApiOperation("修改密码接口")
@@ -94,5 +99,18 @@ public class UserContorller {
     public Map<String, Object> listUser(@RequestHeader("token") String token, String userName, String userStatus, Integer pageNum, Integer pageSize) {
 
         return sysUserService.listUser(token, userName, userStatus, pageNum, pageSize);
+    }
+
+
+    @ApiOperation("重置密码")
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userId", value = "用户ID", required = false),
+            @ApiImplicitParam(name = "passWord", value = "密码", required = false),
+            @ApiImplicitParam(name = "passWordTwo", value = "密码", required = true)
+    })
+    public Map<String, Object> resetPassword(@RequestHeader("token") String token, Integer userId, String passWord, String passWordTwo) {
+
+        return sysUserService.resetPassword(token, userId, passWord, passWordTwo);
     }
 }

@@ -1,5 +1,6 @@
 package com.sysm.back.service;
 
+import com.sysm.back.Enums.SoftwareEnum;
 import com.sysm.back.Enums.UserRoleEnum;
 import com.sysm.back.Enums.UserStatusEnum;
 
@@ -22,7 +23,7 @@ public interface SysUserService {
      * @param password
      * @return
      */
-    Map<String, Object> userregister(String userName, String password, String token, UserRoleEnum userRoleEnum);
+    Map<String, Object> userregister(String userName, String password, String mailbox, String phoneNum, String remark, String maturityTime, String token, UserRoleEnum userRoleEnum);
 
     /**
      * 修改密码
@@ -68,4 +69,14 @@ public interface SysUserService {
      * @return
      */
     Map<String, Object> otherModifyPassword(String sign);
+
+    /**
+     * 重置密码
+     * @param token
+     * @param userId
+     * @param passWord
+     * @param passWordTwo
+     * @return
+     */
+    Map<String, Object> resetPassword(String token, Integer userId, String passWord, String passWordTwo);
 }

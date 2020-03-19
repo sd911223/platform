@@ -77,7 +77,7 @@ public class JwtUtil {
         try {
             DecodedJWT jwt = JWT.decode(token);
             String userId = jwt.getClaim("userId").asString();
-            String loginName = jwt.getClaim("userName").asString();
+            String loginName = jwt.getClaim("loginName").asString();
             SysUser login = new SysUser();
             login.setId(Integer.valueOf(userId));
             login.setUserName(loginName);

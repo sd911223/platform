@@ -46,7 +46,7 @@ public class DateUtil {
      * @return
      */
     public static Date fomatDate(String date) {
-        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             return fmt.parse(date);
         } catch (ParseException e) {

@@ -864,6 +864,216 @@ public class SysUserExample {
             addCriterion("maturity_time not between", value1, value2, "maturityTime");
             return (Criteria) this;
         }
+
+        public Criteria andRemarkIsNull() {
+            addCriterion("remark is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkIsNotNull() {
+            addCriterion("remark is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkEqualTo(String value) {
+            addCriterion("remark =", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotEqualTo(String value) {
+            addCriterion("remark <>", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkGreaterThan(String value) {
+            addCriterion("remark >", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("remark >=", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLessThan(String value) {
+            addCriterion("remark <", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLessThanOrEqualTo(String value) {
+            addCriterion("remark <=", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkLike(String value) {
+            addCriterion("remark like", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotLike(String value) {
+            addCriterion("remark not like", value, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkIn(List<String> values) {
+            addCriterion("remark in", values, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotIn(List<String> values) {
+            addCriterion("remark not in", values, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkBetween(String value1, String value2) {
+            addCriterion("remark between", value1, value2, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemarkNotBetween(String value1, String value2) {
+            addCriterion("remark not between", value1, value2, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareIsNull() {
+            addCriterion("belong_software is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareIsNotNull() {
+            addCriterion("belong_software is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareEqualTo(String value) {
+            addCriterion("belong_software =", value, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareNotEqualTo(String value) {
+            addCriterion("belong_software <>", value, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareGreaterThan(String value) {
+            addCriterion("belong_software >", value, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareGreaterThanOrEqualTo(String value) {
+            addCriterion("belong_software >=", value, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareLessThan(String value) {
+            addCriterion("belong_software <", value, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareLessThanOrEqualTo(String value) {
+            addCriterion("belong_software <=", value, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareLike(String value) {
+            addCriterion("belong_software like", value, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareNotLike(String value) {
+            addCriterion("belong_software not like", value, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareIn(List<String> values) {
+            addCriterion("belong_software in", values, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareNotIn(List<String> values) {
+            addCriterion("belong_software not in", values, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareBetween(String value1, String value2) {
+            addCriterion("belong_software between", value1, value2, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongSoftwareNotBetween(String value1, String value2) {
+            addCriterion("belong_software not between", value1, value2, "belongSoftware");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentIsNull() {
+            addCriterion("belong_agent is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentIsNotNull() {
+            addCriterion("belong_agent is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentEqualTo(String value) {
+            addCriterion("belong_agent =", value, "belongAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentNotEqualTo(String value) {
+            addCriterion("belong_agent <>", value, "belongAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentGreaterThan(String value) {
+            addCriterion("belong_agent >", value, "belongAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentGreaterThanOrEqualTo(String value) {
+            addCriterion("belong_agent >=", value, "belongAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentLessThan(String value) {
+            addCriterion("belong_agent <", value, "belongAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentLessThanOrEqualTo(String value) {
+            addCriterion("belong_agent <=", value, "belongAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentLike(String value) {
+            addCriterion("belong_agent like", value, "belongAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentNotLike(String value) {
+            addCriterion("belong_agent not like", value, "belongAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentIn(List<String> values) {
+            addCriterion("belong_agent in", values, "belongAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentNotIn(List<String> values) {
+            addCriterion("belong_agent not in", values, "belongAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentBetween(String value1, String value2) {
+            addCriterion("belong_agent between", value1, value2, "belongAgent");
+            return (Criteria) this;
+        }
+
+        public Criteria andBelongAgentNotBetween(String value1, String value2) {
+            addCriterion("belong_agent not between", value1, value2, "belongAgent");
+            return (Criteria) this;
+        }
     }
 
     /**
