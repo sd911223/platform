@@ -17,7 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 @Api(tags = "用户")
-public class UserContorller {
+public class UserController {
     @Autowired
     SysUserService sysUserService;
 

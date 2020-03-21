@@ -76,7 +76,7 @@
         <!--              <generatedKey column="id" sqlStatement="Mysql" identity="true" /> &ndash;&gt;-->
         <!--        </table>-->
 
-        <table tableName="sys_user" enableCountByExample="true"
+        <table tableName="activity" enableCountByExample="true"
                enableSelectByPrimaryKey="true"
                enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true"

@@ -66,11 +66,29 @@ public final class ResultVO implements Serializable {
         return map;
     }
 
+    public final static Map<String, Object> success(Object date) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", ResultEnum.SUCCESS.getCode());
+        map.put("message", ResultEnum.SUCCESS.getMessage());
+        map.put("data", date);
+        map.put("success", true);
+        return map;
+    }
+
     public final static Map<String, Object> failure(int code, String message, Object data) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("code", code);
         map.put("message", message);
         map.put("data", data);
+        map.put("success", false);
+        return map;
+    }
+
+    public final static Map<String, Object> failure(String message) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", ResultEnum.FAILURE);
+        map.put("message", message);
+        map.put("data", null);
         map.put("success", false);
         return map;
     }

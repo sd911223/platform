@@ -20,7 +20,7 @@ import java.util.Map;
 @RequestMapping("other/user")
 @Api(tags = "对外接口")
 @Slf4j
-public class ForeignContorller {
+public class ForeignController {
     @Autowired
     SysUserService sysUserService;
 

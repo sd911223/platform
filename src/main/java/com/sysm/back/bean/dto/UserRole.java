@@ -1,4 +1,4 @@
-package com.sysm.back.entity;
+package com.sysm.back.bean.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

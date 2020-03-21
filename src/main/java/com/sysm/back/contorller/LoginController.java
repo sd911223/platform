@@ -19,7 +19,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 @Api(tags = "登录")
-public class LoginContorller {
+public class LoginController {
 
     @Autowired
     SysUserService sysUserService;

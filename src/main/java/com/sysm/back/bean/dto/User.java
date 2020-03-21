@@ -1,4 +1,4 @@
-package com.sysm.back.entity;
+package com.sysm.back.bean.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

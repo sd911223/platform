@@ -1,6 +1,6 @@
 package com.sysm.back.dao;
 
-import com.sysm.back.entity.UserRole;
+import com.sysm.back.bean.dto.UserRole;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 

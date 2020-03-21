@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sysm.back.dao.UserMapper">
-    <select id="findByAdminUserId" parameterType="int" resultType="com.sysm.back.entity.UserRole">
+    <select id="findByAdminUserId" parameterType="int" resultType="com.sysm.back.bean.dto.UserRole">
       select u.user_name AS userName,
   r.name AS userRole
         from Sys_User u
