@@ -24,7 +24,7 @@ public class DefaultWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
         AppInterceptor companyAPPInterceptor = applicationContext.getBean(AppInterceptor.class);
         registry.addInterceptor(companyAPPInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/user/login/**", "/other/user/**", "/swagger-resources/**","/product/**/**","/activity/**/**");
+                .excludePathPatterns("/user/login/**", "/other/user/**", "/swagger-resources/**","/activity/byId/**","/weChat/**/**","/image/**");
     }
 
 

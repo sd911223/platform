@@ -10,15 +10,12 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 /**
- * @author shidun
+ * @author shi
  */
 @RestController
 @Slf4j
@@ -60,7 +57,7 @@ public class ActivityController {
         if (StringUtils.isEmpty(discountPrice)) {
             return ResultVO.failure("优惠价格不能为空");
         }
-        return activityService.addActivity(productId, productName, period, activityName, originalPrice, purchasePrice, discountPrice,token);
+        return activityService.addActivity(productId, productName, period, activityName, originalPrice, purchasePrice, discountPrice, token);
     }
 
     @PostMapping("/listActivity")
@@ -70,12 +67,10 @@ public class ActivityController {
             @ApiImplicitParam(name = "status", value = "状态", required = true),
             @ApiImplicitParam(name = "pageSize", value = "每页条数", required = true),
             @ApiImplicitParam(name = "pageNum", value = "当前页", required = true)})
-    public Map<String, Object> listActivity(String productName, ActivityStatusEnum status, Integer pageSize, Integer pageNum,@RequestHeader("token") String token) {
+    public Map<String, Object> listActivity(String productName, ActivityStatusEnum status, Integer pageSize, Integer pageNum, @RequestHeader("token") String token) {
         log.info("进入添加活动接口,产品名称{},状态{},每页条数{},当前页{}", productName, status, pageSize, pageNum);
 
-        if (StringUtils.isEmpty(productName)) {
-            return ResultVO.failure("产品名称不能为空");
-        }
+
         if (null == status) {
             return ResultVO.failure("状态不能为空");
         }
@@ -85,6 +80,29 @@ public class ActivityController {
         if (null == pageNum) {
             return ResultVO.failure("页数不能为空");
         }
-        return activityService.listActivity(productName, status, pageSize, pageNum,token);
+        return activityService.listActivity(productName, status, pageSize, pageNum, token);
     }
+
+    @PostMapping("/modifyActivity")
+    @ApiOperation("修改活动")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "活动ID", required = true)})
+    public Map<String, Object> modifyActivity(Integer id) {
+        if (null == id) {
+            return ResultVO.failure("活动ID不能为空");
+        }
+        return activityService.modifyActivity(id);
+    }
+
+    @GetMapping("/byId")
+    @ApiOperation("查询活动")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "活动ID", required = true)})
+    public Map<String, Object> qurryActivityById(Integer id) {
+        if (null == id) {
+            return ResultVO.failure("活动ID不能为空");
+        }
+        return activityService.qurryActivityById(id);
+    }
+
 }

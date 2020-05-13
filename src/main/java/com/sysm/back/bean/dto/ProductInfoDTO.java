@@ -22,12 +22,12 @@ public class ProductInfoDTO {
     @ApiModelProperty("产品价格(分)")
     private Integer productPrice;
 
-    @ApiModelProperty("优惠价格(分)")
+    @ApiModelProperty("采购价格(分)")
     private Integer discountPrice;
 
     @ApiModelProperty("产品价格(元)")
     private String productPriceStr;
 
-    @ApiModelProperty("优惠价格(元)")
+    @ApiModelProperty("采购价格(元)")
     private String discountPriceStr;
 }

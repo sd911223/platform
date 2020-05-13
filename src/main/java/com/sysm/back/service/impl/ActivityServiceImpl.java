@@ -37,13 +37,15 @@ public class ActivityServiceImpl implements ActivityService {
         activity.setProductName(productName);
         activity.setPeriod(period);
         activity.setActivityName(activityName);
-        activity.setOriginalPrice(getFenToYuan(originalPrice));
+        Integer fenToYuan = getFenToYuan(originalPrice);
+        activity.setOriginalPrice(fenToYuan);
         Integer purchasePr = getFenToYuan(purchasePrice);
         activity.setPurchasePrice(purchasePr);
         Integer discountPr = getFenToYuan(discountPrice);
         activity.setDiscountPrice(discountPr);
-        activity.setDifferencePrice(purchasePr - discountPr);
+        activity.setDifferencePrice(discountPr - purchasePr);
         activity.setCreateId(sysUser.getId());
+        activity.setSpreadUrl("http://www.taohuohuo.cn/ttviews");
         activityMapper.insertSelective(activity);
         return ResultVO.success();
     }
@@ -63,11 +65,37 @@ public class ActivityServiceImpl implements ActivityService {
         }
         List<Activity> activities = activityMapper.selectByExample(activityExample);
         PageInfo<Activity> pageInfo = new PageInfo<>(activities);
+        List<Activity> list = pageInfo.getList();
+        list.forEach(e->{
+            e.setPurchasePriceStr(new BigDecimal(e.getPurchasePrice().toString()).divide(new BigDecimal("100")).setScale(2).toString());
+            e.setDifferencePriceStr(new BigDecimal(e.getDifferencePrice().toString()).divide(new BigDecimal("100")).setScale(2).toString());
+            e.setOriginalPriceStr(new BigDecimal(e.getOriginalPrice().toString()).divide(new BigDecimal("100")).setScale(2).toString());
+            e.setDiscountPriceStr(new BigDecimal(e.getDiscountPrice().toString()).divide(new BigDecimal("100")).setScale(2).toString());
+        });
         return ResultVO.success(pageInfo);
     }
 
+    @Override
+    public Map<String, Object> modifyActivity(Integer id) {
+        Activity activity = activityMapper.selectByPrimaryKey(id);
+        activity.setIsEffective(1);
+        activity.setUpdateTime(new Date());
+        activityMapper.updateByPrimaryKey(activity);
+        return ResultVO.success();
+    }
+
+    @Override
+    public Map<String, Object> qurryActivityById(Integer id) {
+        Activity activity = activityMapper.selectByPrimaryKey(id);
+        activity.setPurchasePriceStr(new BigDecimal(activity.getPurchasePrice().toString()).divide(new BigDecimal("100")).setScale(2).toString());
+        activity.setDiscountPriceStr(new BigDecimal(activity.getDiscountPrice().toString()).divide(new BigDecimal("100")).setScale(2).toString());
+        activity.setDifferencePriceStr(new BigDecimal(activity.getDifferencePrice().toString()).divide(new BigDecimal("100")).setScale(2).toString());
+        return ResultVO.success(activity);
+    }
+
+
     private Integer getFenToYuan(String fen) {
-        Integer integer = Integer.valueOf(new BigDecimal(fen).multiply(new BigDecimal("100")).toString());
-        return integer;
+        String integer = new BigDecimal(fen).multiply(new BigDecimal("100")).setScale(0).toString();
+        return Integer.valueOf(integer);
     }
 }

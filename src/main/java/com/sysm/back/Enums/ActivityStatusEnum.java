@@ -8,8 +8,8 @@ import lombok.Getter;
 @Getter
 public enum ActivityStatusEnum {
 
-    use(0, "正使用"),
-    Disable(1, "已停用"),
+    USE(0, "正使用"),
+    DISABLE(1, "已停用"),
     ALL(3, "全部"),
     ;
 

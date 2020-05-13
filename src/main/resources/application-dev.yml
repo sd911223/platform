@@ -1,13 +1,15 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/pt_xs?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/crawler_app?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     username: root
-    password: sd123456
+#    password: sd123456
       #redis相关配置
+    password: U_VQ_N2ejc
   redis:
     host: 127.0.0.1
-    password:
+#    password:
+    password: U_VQ_N2ejc
     port: 6379
     jedis:
       pool:
@@ -17,4 +19,8 @@ spring:
         min-idle: 2
 server:
   port: 8081
-
+WeChat:
+  appid: wx001b3f2c80e88782
+  mch_id: 1582735591
+  url: https://api.mch.weixin.qq.com/pay/unifiedorder
+  api_key: 87206daa21eccf26ea8ae580abc1f429
